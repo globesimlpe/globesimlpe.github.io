@@ -1,18 +1,27 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>登录确认</title>
+    <title>Static Webpage</title>
 </head>
 <body>
-<h1>欢迎登录</h1>
-<p>请点击下面的按钮确认登录。</p>
-<button onclick="confirmLogin()">确认登录</button>
+<h1>Welcome to the Webpage</h1>
+<p>Please click the button to confirm login.</p>
+<button id="loginButton">Confirm Login</button>
+
 <script>
-    function confirmLogin() {
-        // 这里可以添加AJAX请求或其他逻辑来通知后端用户已确认登录
-        alert('登录请求已发送');
-    }
+    document.getElementById('loginButton').addEventListener('click', function() {
+        fetch('http://localhost:8000/confirm-login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ confirmation: true })
+        })
+            .then(response => response.text())
+            .then(result => {
+                alert(result); // 显示来自后端的响应
+            });
+    });
 </script>
 </body>
 </html>
