@@ -1,27 +1,205 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>Static Webpage</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>个人介绍 | OpenView 风格</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --accent: #4f46e5;
+      --border: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 96px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    header p {
+      margin-top: 24px;
+      font-size: 1.125rem;
+      color: var(--muted);
+    }
+
+    .hero-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    }
+
+    .section {
+      margin-bottom: 96px;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      font-size: 1.125rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 2.25rem;
+      }
+    }
+  </style>
 </head>
 <body>
-<h1>Welcome to the Webpage</h1>
-<p>Please click the button to confirm login.</p>
-<button id="loginButton">Confirm Login</button>
+  <div class="container">
+    <header>
+      <div>
+        <h1>你好，我是一</h1>
+        <p>
+          大学生 / 技术向探索者。关注计算机视觉、医学影像与工程落地，
+          相信好的系统设计可以放大个人影响力。
+        </p>
+      </div>
+      <div class="hero-card">
+        <h3>当前关键词</h3>
+        <p>
+          医学图像分割 · 深度学习 · 工程实践 · 可复现性 · 长期主义
+        </p>
+      </div>
+    </header>
 
-<script>
-    document.getElementById('loginButton').addEventListener('click', function() {
-        fetch('http://localhost:8000/confirm-login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ confirmation: true })
-        })
-            .then(response => response.text())
-            .then(result => {
-                alert(result); // 显示来自后端的响应
-            });
-    });
-</script>
+    <section class="section">
+      <h2>我在做什么</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>研究 & 学习</h3>
+          <p>
+            聚焦医学影像处理、3D 数据、分割模型与实验复现，追求清晰、
+            可解释、能落地的研究。
+          </p>
+        </div>
+        <div class="card">
+          <h3>工程实践</h3>
+          <p>
+            使用 Python / PyTorch / Linux 构建完整训练与评估流程，
+            重视代码结构与长期可维护性。
+          </p>
+        </div>
+        <div class="card">
+          <h3>长期方向</h3>
+          <p>
+            希望在技术与真实问题之间搭桥，做「对现实世界有用」的系统，
+            而不是只停留在 demo。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>为什么是我</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>自驱力</h3>
+          <p>
+            能长期独立推进复杂问题，不依赖外部催促，对结果负责。
+          </p>
+        </div>
+        <div class="card">
+          <h3>系统思维</h3>
+          <p>
+            不只写模型，也关心数据、评估、部署与复现的完整链路。
+          </p>
+        </div>
+        <div class="card">
+          <h3>沟通能力</h3>
+          <p>
+            能把技术问题讲清楚，适合跨背景协作，而不是只对机器说话。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© 2026 一 · OpenView-style Personal Site</div>
+      <div>
+        <a href="#">GitHub</a> · <a href="#">Email</a> · <a href="#">CV</a>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
